@@ -39,7 +39,7 @@ def request(query, params):
             { 'role': 'system', 'content': cf_ai_model_system },
             { 'role': 'user', 'content': params['query'] }
         ]
-    })
+    }).encode('utf-8')
 
     return params
 
