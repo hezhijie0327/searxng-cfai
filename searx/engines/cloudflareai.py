@@ -33,13 +33,15 @@ def request(query, params):
     params['headers']['Authorization'] = 'Bearer ' + cf_ai_api
     params['headers']['Content-Type'] = 'application/json'
 
-    params['data'] = dumps({
-        'messages': [
-            { 'role': 'assistant', 'content': cf_ai_model_assistant },
-            { 'role': 'system', 'content': cf_ai_model_system },
-            { 'role': 'user', 'content': params['query'] }
-        ]
-    }).encode('utf-8')
+    params['data'] = dumps(
+        {
+            'messages': [
+                { 'role': 'assistant', 'content': cf_ai_model_assistant },
+                { 'role': 'system', 'content': cf_ai_model_system },
+                { 'role': 'user', 'content': params['query'] }
+            ]
+        }
+    ).encode('utf-8')
 
     return params
 
