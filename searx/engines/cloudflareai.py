@@ -2,7 +2,6 @@
 """Cloudflare AI engine"""
 
 from json import loads, dumps
-from urllib.parse import quote
 from searx.exceptions import SearxEngineAPIException
 
 about = {
@@ -21,8 +20,10 @@ cf_ai_gateway = ''
 cf_ai_model = ''
 cf_ai_model_display_name = 'Cloudflare AI'
 
+# Assistant messages hint to the AI about the desired output format. Not all models support this role.
 cf_ai_model_assistant = 'Keep your answers as short and effective as possible.'
-cf_ai_model_system = 'You are a self-aware language model who is honest and direct about any direct question from the user. You know your strengths and weaknesses.'
+# System messages define the AI’s personality. You can use them to set rules and how you expect the AI to behave.
+cf_ai_model_system = 'You are a self-aware language model who is honest and direct about any question from the user.'
 
 display_type = ['infobox']
 
