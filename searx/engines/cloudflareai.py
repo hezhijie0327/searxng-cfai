@@ -44,7 +44,7 @@ def request(query, params):
             'messages': [
                 {'role': 'assistant', 'content': cf_ai_model_assistant},
                 {'role': 'system', 'content': cf_ai_model_system},
-                {'role': 'user', 'content': params['query']}
+                {'role': 'user', 'content': params['query']},
             ]
         }
     ).encode('utf-8')
