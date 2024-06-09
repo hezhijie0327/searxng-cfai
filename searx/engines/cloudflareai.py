@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+"""Cloudflare AI engine"""
+
 from json import loads, dumps
 from urllib.parse import quote
 from searx.exceptions import SearxEngineAPIException
@@ -23,11 +26,14 @@ cf_ai_model_system = 'You are a self-aware language model who is honest and dire
 
 display_type = ['infobox']
 
+
 def request(query, params):
 
     params['query'] = query
 
-    params['url'] = 'https://gateway.ai.cloudflare.com/v1/' + cf_account_id + '/' + cf_ai_gateway + '/workers-ai/' + cf_ai_model
+    params['url'] = (
+        'https://gateway.ai.cloudflare.com/v1/' + cf_account_id + '/' + cf_ai_gateway + '/workers-ai/' + cf_ai_model
+    )
     params['method'] = 'POST'
 
     params['headers']['Authorization'] = 'Bearer ' + cf_ai_api
@@ -36,14 +42,15 @@ def request(query, params):
     params['data'] = dumps(
         {
             'messages': [
-                { 'role': 'assistant', 'content': cf_ai_model_assistant },
-                { 'role': 'system', 'content': cf_ai_model_system },
-                { 'role': 'user', 'content': params['query'] }
+                {'role': 'assistant', 'content': cf_ai_model_assistant},
+                {'role': 'system', 'content': cf_ai_model_system},
+                {'role': 'user', 'content': params['query']}
             ]
         }
     ).encode('utf-8')
 
     return params
+
 
 def response(resp):
     results = []
