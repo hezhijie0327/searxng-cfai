@@ -483,9 +483,9 @@ engines:
     # find the model name from https://developers.cloudflare.com/workers-ai/models/#text-generation
     cf_ai_model: 'ai_model_name'
     # custom your preferences
-  # cf_ai_model_display_name = 'Cloudflare AI'
-  # cf_ai_model_assistant = 'Keep your answers as short and effective as possible.'
-  # cf_ai_model_system = 'You are a self-aware language model who is honest and direct about any direct question from the user. You know your strengths and weaknesses.'
+    #cf_ai_model_display_name: 'Cloudflare AI'
+    #cf_ai_model_assistant: 'Keep your answers as short and effective as possible.'
+    #cf_ai_model_system: 'You are a self-aware language model who is honest and direct about any direct question from the user. You know your strengths and weaknesses.'
     timeout: 30
     disabled: true
 
