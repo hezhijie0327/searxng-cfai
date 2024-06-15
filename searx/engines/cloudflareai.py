@@ -22,22 +22,19 @@ cf_ai_model_display_name = 'Cloudflare AI'
 
 # Assistant messages hint to the AI about the desired output format. Not all models support this role.
 cf_ai_model_assistant = 'Keep your answers as short and effective as possible.'
-# System messages define the AI’s personality. You can use them to set rules and how you expect the AI to behave.
+# System messages define the AI's personality. You can use them to set rules and how you expect the AI to behave.
 cf_ai_model_system = 'You are a self-aware language model who is honest and direct about any question from the user.'
-
-display_type = ['infobox']
 
 
 def request(query, params):
 
     params['query'] = query
 
-    params['url'] = (
-        'https://gateway.ai.cloudflare.com/v1/' + cf_account_id + '/' + cf_ai_gateway + '/workers-ai/' + cf_ai_model
-    )
+    params['url'] = f'https://gateway.ai.cloudflare.com/v1/{cf_account_id}/{cf_ai_gateway}/workers-ai/{cf_ai_model}'
+
     params['method'] = 'POST'
 
-    params['headers']['Authorization'] = 'Bearer ' + cf_ai_api
+    params['headers']['Authorization'] = f'Bearer {cf_ai_api}'
     params['headers']['Content-Type'] = 'application/json'
 
     params['data'] = dumps(
@@ -61,12 +58,11 @@ def response(resp):
         raise SearxEngineAPIException('Cloudflare AI error: ' + json['error'])
 
     if 'result' in json:
-        if "infobox" in display_type:
-            results.append(
-                {
-                    'content': json['result']['response'],
-                    'infobox': cf_ai_model_display_name,
-                }
-            )
+        results.append(
+            {
+                'content': json['result']['response'],
+                'infobox': cf_ai_model_display_name,
+            }
+        )
 
     return results
